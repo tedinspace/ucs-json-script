@@ -10,7 +10,6 @@ def openJsonAsDict(path):
     f.close()
     return data
 
-
 def vetField(text):
     if not text:
         return None
