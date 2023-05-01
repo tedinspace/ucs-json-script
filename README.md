@@ -6,6 +6,6 @@
 
 ## run
 
-convert UCS to JSON `python3 convert.py`
+convert UCS to JSON: `python3 convert.py`
 
-merge space-track satcat and UCS `python3 convertAndMerge.py`
+merge space-track satcat and UCS: `python3 convertAndMerge.py`

@@ -3,7 +3,7 @@ import json
 def saveDictAsJson(path, JSON):
     '''save json'''
     with open(path, 'w') as f:
-        json.dump(JSON, f)
+        json.dump(JSON,f,separators=(',', ':'))
 
 def openJsonAsDict(path):
     '''open json'''

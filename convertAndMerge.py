@@ -20,7 +20,7 @@ def main():
             supEntry = sc.supplementInfo(UCS_JSON[rso], item)
             UCS_JSON[rso]=supEntry
 
-    util.saveDictAsJson('./out/merged.json',UCS_JSON)
+    util.saveDictAsJson('./out/test.json',UCS_JSON)
 
     
     
