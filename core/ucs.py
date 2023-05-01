@@ -1,5 +1,7 @@
 import core.util as util
+
 def parseFile(nameAndPath):
+    '''open, parse, close'''
     JSON = {}
     myFile = open(nameAndPath)
     text = myFile.readline()
@@ -14,6 +16,7 @@ def parseFile(nameAndPath):
     return JSON
 
 def parseLine(l):
+    '''parse single line of satellite data'''
     links = []
     for i in range(28,68):
         if "http" in l[i]:
@@ -56,6 +59,55 @@ def parseLine(l):
         'purpose':util.vetField(l[6]), 
         'purposeDetails':util.vetField(l[7]), 
         'comments':util.vetField(l[27]),   
+        'links':links
+    }
+    }
+    return D
+
+
+
+def fullInFromSatCat(D):
+    '''fill in exclusively from space-track satcat'''
+    links = []
+
+    D = {
+    'name': util.vetField(D["OBJECT_NAME"]), 
+    'number':util.vetField(D["NORAD_CAT_ID"]), 
+    'officialName':None, 
+    'COSPAR':None, 
+    'orbit':{
+        'orbitClass':None, 
+        'orbitType':None,
+        'elements': {
+            'longitude':None, 
+            'perigee':util.vetField(D["PERIGEE"]), 
+            'apogee':util.vetField(D["APOGEE"]), 
+            'eccentricity':None, 
+            'inclination':util.vetField(D["INCLINATION"]), 
+            'period':util.vetField(D["PERIOD"]), 
+        }
+    },
+    'launch':{
+        'massLaunch':None, 
+        'massDry':None, 
+        'launchSite':util.vetField(D["SITE"]), 
+        'launchVehicle':None,
+        'launchDate':util.vetField(D["LAUNCH"]), 
+        'lifetime':None, 
+        'power':None 
+    },
+    'affiliation':{
+        'countryRegistry':util.vetField(D["COUNTRY"]), 
+        'countryOperator':None, 
+        'operator':None, 
+        'users':None, 
+        'contractor':None, 
+        'countryContractor':None, 
+    },
+    'info':{
+        'purpose':None, 
+        'purposeDetails':None, 
+        'comments':util.vetField(D["COMMENT"]), 
         'links':links
     }
     }
